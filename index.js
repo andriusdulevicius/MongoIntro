@@ -9,7 +9,8 @@ const { mongoDbString } = require('./src/config/config');
 //isitraukiam mongoose paketa
 const mongoose = require('mongoose');
 //prisijungiam prie duomenu bazes
-mongoose.connect(mongoDbString);
+
+mongoose.connect(mongoDbString, { useUnifiedTopology: true, useNewUrlParser: true });
 
 //register view engine
 app.set('view engine', 'ejs');
