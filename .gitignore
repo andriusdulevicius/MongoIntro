@@ -1,1 +1,4 @@
 node_modules
+
+#Mongo db access string with pass and username
+src/config/config.js

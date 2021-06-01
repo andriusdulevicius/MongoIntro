@@ -3,18 +3,16 @@
 const express = require('express');
 const app = express();
 
-const path = require('path');
-
+const { mongoDbString } = require('./src/config/config');
 //register view engine
 app.set('view engine', 'ejs');
 //render views home dir
 app.set('views', 'src/views');
 
 app.get('/', function (req, res) {
-  // res.sendFile(path.join(__dirname, 'pages', 'contact.html'));
+  // renderinant nereikia rasyti failo galunes kuri nori uzkrauti
   res.render('index', {
     title: 'Home page',
-    page: 'index',
   });
 });
 
