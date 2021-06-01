@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 mongoose
   .connect(mongoDbString, { useUnifiedTopology: true, useNewUrlParser: true })
   .then((result) => {
-    console.log('connected to mongoose, results:');
+    console.log('connected to mongoose');
     app.listen(3000);
   })
   .catch((err) => console.error(err));
@@ -31,16 +31,35 @@ app.get('/', function (req, res) {
   });
 });
 
+app.get('/posts', (req, res) => {
+  //get all posts
+  Post.find()
+    .then((result) => {
+      console.log(result);
+      res.send(result);
+    })
+    .catch((err) => console.error(err.message));
+});
+
+app.get('/single-post', (req, res) => {
+  const id = '60b5f5b45b5b41448008dac7';
+  Post.findById(id)
+    .then((result) => res.render('single', result))
+    .catch((err) => console.error(err.message));
+});
+
 app.get('/add-post', (req, res) => {
   //sukuriam nauja posta pagal post.js sukurta modeli
   const newPost = new Post({
-    title: 'This is Mongoose Db',
+    title: 'Very nice post',
     author: 'John Doe',
     body: 'blah blah blah this is a long text',
   });
   //kad issaugoti duomenu bazeje naudojam .save() metoda
-  newPost.save();
-  res.send('all good');
+  newPost
+    .save() //issaugom duomenis , kadangi asinchronine funkcija, reikia then
+    .then((result) => res.send(result))
+    .catch((err) => console.error(err));
 });
 
 //404 case , kai vartotojas ivede psl kurio nera

@@ -29,5 +29,6 @@ const postSchema = new Schema(
 //eksportuoti naujai sukurta objekta pagal sia schema
 // dazniausiai turetu buti post vienaskaitai , jei kolekcijos pavadinimas posts
 const Post = mongoose.model('post', postSchema);
+//sukurem post modeli pagal postSchema
 
 module.exports = Post;
