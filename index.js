@@ -4,6 +4,13 @@ const express = require('express');
 const app = express();
 
 const { mongoDbString } = require('./src/config/config');
+
+//susiinstaliuojam mongoose , npm install mongoose
+//isitraukiam mongoose paketa
+const mongoose = require('mongoose');
+//prisijungiam prie duomenu bazes
+mongoose.connect(mongoDbString);
+
 //register view engine
 app.set('view engine', 'ejs');
 //render views home dir
